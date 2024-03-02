@@ -103,7 +103,7 @@ fun BirthdayCardPreview( modifier: Modifier = Modifier) {
     HappyBirthdayAppTheme {
         Box {
             GreetingImage(
-                message = "Happy Birthday me!))",
+                message = stringResource(R.string.happy_birthday_me),
                 from = "from Android",
                 modifier = Modifier
                     .fillMaxSize()
