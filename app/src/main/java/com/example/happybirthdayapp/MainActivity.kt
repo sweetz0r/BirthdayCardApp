@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import com.example.happybirthdayapp.ui.theme.HappyBirthdayAppTheme
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +37,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     GreetingImage(
-                        message = "Happy Birthday me!))",
-                        from = "from Android",
+                        message = stringResource(R.string.happy_birthday_me),
+                        from = stringResource(R.string.from_android),
 
                     )
                 }
@@ -62,7 +64,7 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
             fontSize = 36.sp,
             modifier = Modifier
                 .padding(16.dp)
-                .align(alignment = Alignment.End)
+                .align(alignment = Alignment.CenterHorizontally)
         )
     }
 }
@@ -75,7 +77,9 @@ val image = painterResource(R.drawable.androidparty)
     ) {
         Image(
             painter = image,
-            contentDescription = null
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            alpha = 0.5f
         )
         GreetingText(
             message = message,
@@ -91,15 +95,22 @@ val image = painterResource(R.drawable.androidparty)
 @Preview(
     showBackground = true,
     showSystemUi = true,
-    name = "Gleb's App"
+    name = "Gleb's App",
+
 )
 @Composable
-fun BirthdayCardPreview() {
+fun BirthdayCardPreview( modifier: Modifier = Modifier) {
     HappyBirthdayAppTheme {
-    GreetingImage(
-        message = "Happy Birthday me!))",
-        from = "from Android",
+        Box {
+            GreetingImage(
+                message = "Happy Birthday me!))",
+                from = "from Android",
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp)
 
-    )
+                )
+
+        }
     }
 }
